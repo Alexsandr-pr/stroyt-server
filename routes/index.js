@@ -9,7 +9,7 @@ const typeToolRouter = require("./typeToolRouter")
 
 
 
-router.use("/auth", cardRouter)
+router.use("/card", cardRouter)
 router.use("/category", caregoryRouter)
 router.use("/typeproduct", typeProduct)
 router.use("/typetool", typeToolRouter)

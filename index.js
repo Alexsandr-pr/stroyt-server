@@ -4,8 +4,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const router = require("./routes/index")
+const corsMiddleware = require("./middleware/cors.middleware")
 
-
+app.use(corsMiddleware)
 app.use(express.json())
 app.use("/api", router)
 
