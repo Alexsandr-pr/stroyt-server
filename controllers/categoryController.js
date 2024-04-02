@@ -24,6 +24,20 @@ class categoryController {
             return res.json({massege: "Could not receive all category"})
         }
     }
+
+    async deleteCategory(req, res){
+        try {
+            const {_id} = req.query
+            const typeProduct = await Category.findById({_id});
+            if(typeProduct) {
+                await Category.deleteOne({_id});
+            }
+            
+            return res.json({message:"Delete category"});
+        } catch(e) {
+            console.log(e)
+        }
+    }
 }
 
 module.exports = new categoryController()

@@ -2,10 +2,9 @@ const {Schema, model, ObjectId} = require("mongoose")
 
 
 const TypeTool = new Schema({
-    typeTool: {type:String, required:true},
+    type: {type:String, required:true},
     title:{type:String, required:true},
-    category:{type:ObjectId, ref: "Category", required:true},
-    typeProducts: [{type:ObjectId, ref:"TypeProduct", required:true}]
+    categoryId:{type:ObjectId, ref: "Category", required:true}, 
 })
 
 

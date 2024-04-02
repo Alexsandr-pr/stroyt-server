@@ -3,7 +3,7 @@ const router = new Router();
 
 const cardRouter = require("./cardRouter")
 const caregoryRouter = require("./caregoryRouter")
-const typeProduct = require("./typeProduct")
+const typeProduct = require("./typeProductRouter")
 const typeToolRouter = require("./typeToolRouter")
 
 
