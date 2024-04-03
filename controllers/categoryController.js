@@ -5,8 +5,8 @@ const Category = require("../models/Category")
 class categoryController {
     async addCategory(req, res){
         try {
-            const {type, title} = req.body;
-            const category = new Category({type, title})
+            const {title} = req.body;
+            const category = new Category({title})
     
             category.save();
             return res.json(category);
