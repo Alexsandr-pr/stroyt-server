@@ -3,7 +3,7 @@ const router = new Router();
 const typeToolController = require("../controllers/typeToolController")
 
 
-router.post("/", typeToolController.addTypeTool)
+router.post("/tool/:id", typeToolController.addTypeTool)
 
 router.get("/all", typeToolController.getAll)
 router.get("/bycategory", typeToolController.getAllByCategory)

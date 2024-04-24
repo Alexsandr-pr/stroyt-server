@@ -9,10 +9,17 @@ class typeProductController {
     async addTypeProduct(req, res){
         try {
             const {_id} = req.query;
-            const {type, title} = req.body;
-            const typeProd = new TypeProduct({type, title, typeToolId: _id})
-            typeProd.save()
-            return res.json(typeProd)
+            const {title} = req.body;
+
+            const checkTypeProduct = await TypeProduct.findOne({title});
+
+            if(checkTypeProduct) {
+                return res.status(400).json({message: `TypeProduct ${title} already exist`})
+            }
+
+            const typeProd =   new TypeProduct({title, typeToolId: _id})
+            await typeProd.save();
+            return res.json(typeProd);
         }catch(e) {
             console.log(e)
         }

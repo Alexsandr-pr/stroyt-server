@@ -6,9 +6,16 @@ class brandController {
     async addBrand(req, res){
         try {
             const {title} = req.body;
+
+            const checkBrand = await Brand.findOne({title});
+
+            if(checkBrand) {
+                return res.status(400).json({message: `Brand ${title} already exist`})
+            }
+
             const brand = new Brand({title})
     
-            brand.save();
+            await brand.save();
             return res.json(brand);
         }catch(e) {
             return res.json({message: "Brand not add to database"})

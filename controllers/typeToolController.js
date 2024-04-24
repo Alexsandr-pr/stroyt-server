@@ -5,11 +5,18 @@ const TypeTool = require("../models/TypeTool")
 class typeToolController {
     async addTypeTool(req, res){
         try {
-            const {_id} = req.query;
-            const {type, title} = req.body;
-            const typeTool = new TypeTool({type, title, categoryId: _id})
-    
-            typeTool.save();
+            const _id = req.params.id;
+            const {title} = req.body;
+
+            const checkTypeTool = await TypeTool.findOne({title});
+
+            if(checkTypeTool) {
+                return res.status(400).json({message: `TypeTool ${title} already exist`})
+            }
+
+            const typeTool = new TypeTool({title, categoryId: _id});
+
+            await typeTool.save();
             return res.json(typeTool);
         }catch(e) {
             return res.json({message: "Category not add to database"})
@@ -19,8 +26,8 @@ class typeToolController {
     async getAll(req, res) {
         try {
             const typeToolAll = await TypeTool.find();
+            
             return res.json(typeToolAll)
-    
         }catch(e) {
             return res.json({massege: "Could not receive all category"})
         }

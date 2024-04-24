@@ -6,9 +6,15 @@ class categoryController {
     async addCategory(req, res){
         try {
             const {title} = req.body;
+            const checkCategory = await Category.findOne({title});
+
+            if(checkCategory) {
+                return res.status(400).json({message: `Category ${title} already exist`})
+            }
+
             const category = new Category({title})
     
-            category.save();
+            await category.save();
             return res.json(category);
         }catch(e) {
             return res.json({message: "Category not add to database"})
@@ -29,6 +35,8 @@ class categoryController {
         try {
             const {_id} = req.query
             const typeProduct = await Category.findById({_id});
+
+
             if(typeProduct) {
                 await Category.deleteOne({_id});
             }
