@@ -13,7 +13,7 @@ class CardController {
                 return res.status(400).json({ error: 'No file uploaded' });
             }
             const {code, sale, brandId, title, price, categoryId, typeToolId, typeProductId, params} = req.body;
-            console.log(params)
+            
             const files = req.files.file;
             const arrayImages = []
 
