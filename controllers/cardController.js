@@ -35,7 +35,7 @@ class CardController {
             await  vendor.save();
 
             const card = new Card({
-                code: vendor,  
+                code: vendor.code,  
                 sale, 
                 brandId, 
                 title, 
