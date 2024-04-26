@@ -25,7 +25,7 @@ app.use(fileMiddleware(path.resolve(__dirname, "static")));
 
 app.use("/api", router)
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT  || 5000;
 
 
 const start = async () => {

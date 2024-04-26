@@ -4,12 +4,8 @@ const cardController = require("../controllers/cardController")
 
 
 router.post("/", cardController.addCard)
-
-
-router.get("/", (req, res) => {
-    return res.json({message: "ALL WORKING"})
-})
-
-
+router.get("/", cardController.getCard)
+router.get("/card/:id", cardController.getOneCard)
+router.delete("/card/:id", cardController.deleteCard)
 
 module.exports = router
