@@ -63,7 +63,22 @@ class CardController {
 
             return res.json(cards);
         }catch{
-            return res.json({message: "Ошибка при получении файлов"})
+            return res.json({message: "Ошибка при получении файлов 2 "})
+        }
+    }
+
+    async getArrayCardOnCategory(req, res) {
+        try {
+            const limit = req.query.limit;
+            const id = req.query.id;
+            if(id !== "" ) {
+                const cards = await Card.find({categoryId:id}).limit(limit);
+                return res.json(cards);
+            }
+            const cards = await Card.find().limit(limit);
+            return res.json(cards);
+        }catch{
+            return res.json({message: "Ошибка при получении файлов по категории"})
         }
     }
 
@@ -88,6 +103,8 @@ class CardController {
             return res.json({message: "Ошибка при удалении товара"})
         }
     }
+
+
 }
 
 

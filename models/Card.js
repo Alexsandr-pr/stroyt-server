@@ -13,7 +13,8 @@ const Card = new Schema({
     categoryId: {type:ObjectId, ref: "Category"},
     typeToolId:{type:ObjectId, ref: "TypeTool"},
     typeProductId:{type:ObjectId, ref:"TypeProduct"},
-    current:{type:Number, required:true, default: 0}
+    current:{type:Number, required:true, default: 0},
+    salesCurrent: {type:Number, required:true, default: 0}
 })
 
 
