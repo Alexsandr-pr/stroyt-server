@@ -1,8 +1,5 @@
 
 const Card = require("../models/Card")
-const uuid = require("uuid")
-const path = require('path');
-const fs = require("fs")
 const CardService = require("../services/CardService")
 const VendorCode = require("../models/VendorCode")
 
@@ -57,11 +54,12 @@ class CardController {
 
     async getCard(req, res) {
         try {
+            const {limit, page} = req.query;
+            const skip = (page - 1) * limit
+            const cards = await Card.find().skip(skip).limit(limit);
+            const cardsLenght = await Card.countDocuments();
 
-            const cards = await Card.find()
-
-
-            return res.json(cards);
+            return res.json({cards, cardsLenght});
         }catch{
             return res.json({message: "Ошибка при получении файлов 2 "})
         }
