@@ -27,7 +27,6 @@ class CardController {
             const files = req.files.file;
             const arrayImages = await CardService.createArrayFiles(req, files);
 
-           
             const vendor = new VendorCode({code: code});
             await  vendor.save();
 
@@ -54,13 +53,15 @@ class CardController {
 
     async getCard(req, res) {
         try {
+
             const {limit, page} = req.query;
             const skip = (page - 1) * limit
             const cards = await Card.find().skip(skip).limit(limit);
             const cardsLenght = await Card.countDocuments();
 
             return res.json({cards, cardsLenght});
-        }catch{
+
+        } catch{
             return res.json({message: "Ошибка при получении файлов 2 "})
         }
     }
